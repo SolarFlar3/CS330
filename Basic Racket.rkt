@@ -1,0 +1,17 @@
+#lang racket
+
+(define (sum-coins pennies nickels dimes quarters) (+ pennies (* nickels 5) (* dimes 10) (* quarters 25)))
+
+(define (degrees-to-radians angle) (* pi (/ angle 180)))
+
+(define (sign x)
+  (cond
+    ((< x 0) -1)
+    ((> x 0) 1)
+    (else 0)))
+
+(define (new-sin angle type)
+  (cond
+    ((symbol=? type 'degrees) (sin (degrees-to-radians angle)))
+    ((symbol=? type 'radians) (sin angle))))
+                        
