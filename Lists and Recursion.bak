@@ -1,0 +1,27 @@
+#lang racket
+
+(define (check-temps1 temps)
+  (if (empty? temps)
+      true
+      (and (if (> (first temps) 95)
+               false
+               (and (< (first temps) 5)
+                    false
+                    (and (check-temps1 (rest temps))))))))
+                  
+
+;(define (check-temps temps low high) ...)
+
+;(define (convert digits) ...)
+
+;(define (duple lst) ...)
+
+;(define (average lst) ...)
+
+;(define (convertFC temps) ...)
+
+;(define (eliminate-larger lst) ...)
+
+;(define (get-nth lst n) ...)
+
+;(define (find-item lst target) ...)
