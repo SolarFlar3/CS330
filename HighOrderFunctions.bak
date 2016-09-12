@@ -1,0 +1,34 @@
+#lang racket
+
+(define (convertCelc temp)
+  (/ (- temp 32) (/ 9 5)))
+
+(define (convertFC temps)
+  (map convertCelc temps))
+
+(define (check-temp1 temp)
+  (cond
+    ((> temp 95) false)
+    ((< temp 4) false)
+    (else true)))
+
+(define (check-temps1 temps)
+  (andmap check-temp1 temps))
+
+(define (check-temps temps low high)
+  (andmap (lambda (x)
+            (cond
+              ((> x high) false)
+              ((< x low) false)
+              (else true))) temps))
+
+(define (convert digits)
+  (foldr + 0 (next-element-bigger digits))
+
+;(define (duple lst) ...)
+
+;(define (average lst) ...)
+
+;(define (eliminate-larger lst) ...)
+
+;(define (curry2 func) ...)
