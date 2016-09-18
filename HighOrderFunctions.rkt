@@ -39,7 +39,16 @@
 (define (average lst)
   (/ (foldr + 0.0 lst) (length lst)))
 
-(define (eliminate-larger lst)
-  (filter  lst))
+(define (smaller-than-list? num lst)
+  (if (empty? lst)
+      true
+      (and (cond
+             ((> num (first lst)) false)
+             (else (smaller-than-list? num (rest lst)))))))
 
-(define (curry2 func) ...)
+(define (eliminate-larger lst)
+  (if (empty? lst)
+      empty
+      (if (smaller-than-list? (first lst) (rest lst))
+          (cons (first lst) (eliminate-larger (rest lst)))
+          (eliminate-larger (rest lst)))))

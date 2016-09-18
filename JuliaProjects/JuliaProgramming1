@@ -1,0 +1,53 @@
+abstract Shape
+
+type Position
+  x::Real
+  y::Real
+end
+
+type Circ <: Shape
+  center::Position
+  radius::Real
+end
+
+type Square <: Shape
+  upper_left::Position
+  length::Real
+end
+
+type Rect <: Shape
+  upper_left::Position
+  width::Real
+  height::Real
+end
+
+function area(shape::Rect)
+    return shape.width * shape.height
+end
+
+function area(shape::Circ)
+    return (pi * (shape.radius * shape.radius))
+end
+
+function area(shape::Square)
+    return (shape.length * shape.length)
+end
+
+rect = Rect(Position(1, 1), 3, 4)
+circ = Circ(Position(1, 1), 2)
+square = Square(Position(1, 1), 2)
+println(area(rect))
+println(area(circ))
+println(area(square))
+
+function in_shape(shape::Square, position::Position)
+    right = shape.Position.x
+    top = shape.Position.y
+    left = shape.Position.x + shape.length
+    bot = shape.Position.y - shape.length
+    if (position.x > right || position.x < left || position.y > top || position.y < bot)
+        return false
+    return true
+end
+
+println(in_shape(square, Position(0,2)))

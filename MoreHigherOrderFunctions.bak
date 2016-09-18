@@ -1,0 +1,27 @@
+#lang racket
+
+(define (default-parms f values)
+  (lambda (args)
+   (if (< (length values) (length args))
+       (print "less")
+       (print "greater"))
+    (apply f args)))
+
+(define (mult x y)
+  (* x y))
+
+(define g (default-parms mult (list 42 99)))
+
+;(define (type-parms f types) )
+
+(define (square x)
+  (* x x))
+
+(define (debug3 f label)
+  (lambda args
+    (printf "Function ~a called with parameters: ~a~n" label args)
+    (apply f args)))
+
+(define square-debug3 (debug3 square "square"))
+
+(square-debug3 5)
